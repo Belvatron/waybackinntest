@@ -1,4 +1,3 @@
-<?php
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,19 @@
 			<h1><a href="<?php bloginfo( 'url' ); ?>"><?php bloginfo("name"); ?></a></h1>
 			<h2><?php bloginfo("description"); ?></h2>
 		</hgroup>	
+		
+		<?php wp_nav_menu(array("menu" => "Primary Menu")); ?>
+		<div class="clear"></div>
 	</header>
+	<div>
+		<?php if(have_posts()): while(have_posts()): the_post(); ?>
+			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+			<p><?php the_content(); ?></p>
+		<?php endwhile; else: ?>
+			<p>Sorry no posts to display</p>
+		<?php endif; ?>
+	
+	
+	</div>
 </body>
 </html>
-?>
